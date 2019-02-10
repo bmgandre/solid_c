@@ -1,12 +1,5 @@
 set(PROJECT_NAME srp)
 
-option(SRP_MODIFICATION "Enable code modification which break bussiness rules for HR" OFF)
-
-if(SRP_MODIFICATION)
-    add_definitions(-DNEW_HOURS_THRESHOLD)
-    message("SRP MODIFICATION ENABLED")
-endif(SRP_MODIFICATION)
-
 add_subdirectory(entities)
 add_subdirectory(repository)
 add_subdirectory(payment)

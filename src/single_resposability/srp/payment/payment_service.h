@@ -1,5 +1,5 @@
-#ifndef EMPLOYEE_SERVICE_H
-#define EMPLOYEE_SERVICE_H
+#ifndef PAYMENT_SERVICE_H
+#define PAYMENT_SERVICE_H
 
 #include "../entities/time_sheet.h"
 
@@ -9,18 +9,11 @@ typedef struct payment_calculation_result {
     double payment_result;
 } payment_calculation_result;
 
-typedef struct report_hours_result {
-    int error_code;
-    char* error_message;
-    double hours_result;
-} report_hours_result;
-
-typedef struct employee_service {
+typedef struct payment_service {
     struct payment_calculation_result (*calculate_pay)(int const employee_id, int const year, month const month);
-    struct report_hours_result (*report_hours)(int const employee_id, int const year, month const month);
-} employee_service;
+} payment_service;
 
-extern struct employee_service* (*new_employee_service)(void);
-extern void (*free_employee_service)(struct employee_service*);
+extern struct payment_service* (*new_payment_service)(void);
+extern void (*free_payment_service)(struct payment_service*);
 
-#endif // EMPLOYEE_SERVICE_H
+#endif // PAYMENT_SERVICE_H
