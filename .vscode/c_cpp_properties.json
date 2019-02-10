@@ -1,0 +1,30 @@
+{
+    "configurations": [
+        {
+            "name": "MSYS clang",
+            "intelliSenseMode": "clang-x64",
+            "compilerPath": "C:/msys64/mingw64/bin/clang.exe",
+            "includePath": [
+                "${workspaceFolder}/src/srp/employee",
+                "${workspaceFolder}/src/srp",
+                "C:/msys64/mingw64/include/glib-2.0",
+                "C:/msys64/mingw64/include/glib-2.0/glib",
+                "C:/msys64/mingw64/lib/glib-2.0/include"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "cStandard": "c11",
+            "browse": {
+                "path": [
+                    "${workspaceFolder}",
+                    "C:/msys64/mingw64/include"
+                ],
+                "limitSymbolsToIncludedHeaders": false
+            }
+        }
+    ],
+    "version": 4
+}

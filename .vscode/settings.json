@@ -1,0 +1,27 @@
+{
+    "C_Cpp.default.cStandard": "c11",
+    "C_Cpp.default.intelliSenseMode": "clang-x64",
+    "C_Cpp.default.configurationProvider": "vector-of-bool.cmake-tools",
+    "clang.executable": "C:/msys64/mingw64/bin/clang.exe",
+    "cmake.cmakePath": "C:/msys64/mingw64/bin/cmake.exe",
+    "cmake.mingwSearchDirs": [
+        "C:/msys64/MinGW64"
+    ],
+    "cmake.generator": "MSYS Makefiles",
+    "cmake.configureArgs": [
+        "-DCMAKE_MAKE_PROGRAM=c:/msys64/usr/bin/make.exe"
+    ],
+    "cmake.configureOnOpen": false,
+    "terminal.integrated.shell.windows": "C:/msys64/usr/bin/bash.exe",
+    "terminal.integrated.shellArgs.windows": [
+        "--login",
+    ],
+    "terminal.integrated.env.windows": {
+        "CHERE_INVOKING": "1",
+        "MSYSTEM": "MINGW64",
+    },
+    "files.associations": {
+        "employee_repository.h": "c",
+        "employee.h": "c"
+    }
+}
