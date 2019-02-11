@@ -1,1 +1,2 @@
-add_subdirectory(no_srp)
+add_subdirectory(no-srp)
+add_subdirectory(srp)
