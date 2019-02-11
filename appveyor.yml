@@ -1,0 +1,45 @@
+version: '{build}'
+platform: x64
+configuration: Release
+os: Visual Studio 2017
+
+environment:
+  matrix:
+    - MSYS2_ARCH: x86_64
+      MSYSTEM: MINGW64
+      C_COMPILER: gcc
+      CXX_COMPILER: g++
+      CHERE_INVOKING: 1
+
+    - MSYS2_ARCH: i686
+      MSYSTEM: MINGW32
+      C_COMPILER: gcc
+      CXX_COMPILER: g++
+      CHERE_INVOKING: 1
+
+    - MSYS2_ARCH: x86_64
+      MSYSTEM: MINGW64
+      C_COMPILER: clang
+      CXX_COMPILER: clang++
+      CHERE_INVOKING: 1
+
+    - MSYS2_ARCH: i686
+      MSYSTEM: MINGW32
+      C_COMPILER: gcc
+      CXX_COMPILER: clang++
+      CHERE_INVOKING: 1
+
+install:
+  - set PATH=C:\msys64\%MSYSTEM%\bin;C:\msys64\usr\bin;%PATH%
+  - bash -lc "pacman --noconfirm --needed -Sy bash pacman pacman-mirrors msys2-runtime msys2-runtime-devel"
+  - bash -lc "pacman --noconfirm -Suu"
+  - bash -lc "pacman --noconfirm -S mingw-w64-%MSYS2_ARCH%-toolchain"
+  - bash -lc "pacman --noconfirm -S mingw-w64-%MSYS2_ARCH%-{cmake,make,clang}"
+  - bash -lc "pacman --noconfirm -S mingw-w64-%MSYS2_ARCH%-glib2"
+
+build_script:
+  - cd %APPVEYOR_BUILD_FOLDER%
+  - mkdir build
+  - cd build
+  - bash -lc "cmake .. -DCMAKE_C_COMPILER=%C_COMPILER% -DCMAKE_CXX_COMPILER=%CXX_COMPILER% -G 'MSYS Makefiles'"
+  - bash -lc "make"
