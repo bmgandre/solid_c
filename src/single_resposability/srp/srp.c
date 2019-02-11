@@ -15,10 +15,11 @@ int main() {
     struct report_hours_result hours_result = time_sheet_service->report_hours(employee_id, year, month);
 
     free_payment_service(payment_service);
+    free_time_sheet_service(time_sheet_service);
 
     printf("Employee: %d\n", employee_id);
     printf("|- payment: %f\n", pay_result.payment_result);
-    //printf("|- hours..: %f\n", hours_result.hours_result);
+    printf("|- hours..: %f\n", hours_result.hours_result);
 
     return 0;
 }
