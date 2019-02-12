@@ -91,3 +91,14 @@ struct financial_transaction_convert _financial_transaction_converter = {
 };
 
 const struct financial_transaction_convert * const financial_transaction_converter = &_financial_transaction_converter;
+
+void _free_financial_transaction_item(gpointer data) {
+    struct financial_transaction* financial_transaction = _to_financial_transaction(data);
+    _free_financial_transaction(financial_transaction);
+}
+
+void _free_financial_transaction_list(financial_transaction_list list) {
+    g_list_free_full(list, &_free_financial_transaction_item);
+}
+
+void (*free_financial_transaction_list)(financial_transaction_list) = &_free_financial_transaction_list;

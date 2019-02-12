@@ -39,4 +39,6 @@ extern const struct financial_transaction_convert * const financial_transaction_
 
 typedef GList* financial_transaction_list;
 
+extern void (*free_financial_transaction_list)(financial_transaction_list);
+
 #endif // FINANCIAL_TRANSACTION_H
