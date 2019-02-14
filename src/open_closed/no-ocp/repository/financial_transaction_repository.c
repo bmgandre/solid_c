@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-struct financial_transaction financial_transaction_store[] =  {
+static struct financial_transaction financial_transaction_store[] =  {
     { .id = 1, .date_time = 1546340400, .value = 10., .description = "Printer maintainence" },
     { .id = 2, .date_time = 1546351200, .value = 120., .description = "Keyboard PC101" },
     { .id = 3, .date_time = 1546423200, .value = 1000., .description = "GPU board" },
@@ -15,10 +15,10 @@ size_t financial_transaction_store_length() {
 }
 
 financial_transaction_list _list() {
-    
     financial_transaction_list list = NULL;
     for (size_t i = 0; i < financial_transaction_store_length(); i++) {
-        list = g_list_append(list, financial_transaction_converter->to_gpointer(&financial_transaction_store[i]));
+        struct financial_transaction * item = financial_transaction_ns->clone(&financial_transaction_store[i]);
+        list = g_list_append(list, financial_transaction_converter->to_gpointer(item));
     }
 
     return list;
