@@ -1,4 +1,4 @@
-#include "financial_report_service.h"
+#include "financial_report_generator.h"
 #include "../repository/financial_transaction_repository.h"
 
 struct financial_report_result * _new_financial_report_result() {

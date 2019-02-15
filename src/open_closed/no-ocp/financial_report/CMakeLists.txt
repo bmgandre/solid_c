@@ -1,9 +1,9 @@
 set(PROJECT_NAME no-ocp-financial-report)
 
 set(PROJECT_SOURCES
-    financial_report_service.c)
+    financial_report_generator.c)
 set(PROJECT_HEADERS
-    financial_report_service.h)
+    financial_report_generator.h)
 
 source_group("Sources" FILES ${PROJECT_SOURCES})
 source_group("Headers" FILES ${PROJECT_HEADERS})
