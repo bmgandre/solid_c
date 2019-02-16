@@ -16,4 +16,7 @@ typedef struct financial_report_generator {
     struct financial_report_result * (*get_transactions)(struct tm * begin, struct tm * end);
 } financial_report_generator;
 
+extern struct financial_report_generator * (*new_financial_report_generator)(void);
+extern void (*free_financial_report_generator)(struct financial_report_generator*);
+
 #endif // FINANCIAL_REPORT_GENERATOR_H

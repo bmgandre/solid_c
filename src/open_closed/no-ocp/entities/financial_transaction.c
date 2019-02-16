@@ -2,35 +2,35 @@
 #include <stdlib.h>
 #include <string.h>
 
-long _get_id(struct financial_transaction * financial_transaction) {
+static long _get_id(struct financial_transaction * financial_transaction) {
     return financial_transaction->id;
 }
 
-void _set_id(struct financial_transaction * financial_transaction, long id) {
+static void _set_id(struct financial_transaction * financial_transaction, long id) {
     financial_transaction->id = id;
 }
 
-void _set_date_time(struct financial_transaction * financial_transaction, time_t date_time) {
+static void _set_date_time(struct financial_transaction * financial_transaction, time_t date_time) {
     financial_transaction->date_time = date_time;
 }
 
-time_t _get_date_time(struct financial_transaction * financial_transaction) {
+static time_t _get_date_time(struct financial_transaction * financial_transaction) {
     return financial_transaction->date_time;
 }
 
-double _get_value(struct financial_transaction * financial_transaction) {
+static double _get_value(struct financial_transaction * financial_transaction) {
     return financial_transaction->value;
 }
 
-void _set_value(struct financial_transaction * financial_transaction, double value) {
+static void _set_value(struct financial_transaction * financial_transaction, double value) {
     financial_transaction->value = value;
 }
 
-char* _get_description(struct financial_transaction * financial_transaction) {
+static char* _get_description(struct financial_transaction * financial_transaction) {
     return financial_transaction->description;
 }
 
-void _set_description(struct financial_transaction * financial_transaction, char* description) {
+static void _set_description(struct financial_transaction * financial_transaction, char* description) {
     if (financial_transaction->description) {
         free(financial_transaction->description);
     }
@@ -39,7 +39,7 @@ void _set_description(struct financial_transaction * financial_transaction, char
     strcpy(financial_transaction->description, description);
 }
 
-struct financial_transaction * _clone(struct financial_transaction * other) {
+static struct financial_transaction * _clone(struct financial_transaction * other) {
     struct financial_transaction * financial_transaction = new_financial_transaction();
     _set_id(financial_transaction, other->id);
     _set_date_time(financial_transaction, other->date_time);
@@ -66,7 +66,7 @@ static struct financial_transaction_operations _financial_transaction_operations
 
 const struct financial_transaction_operations * const financial_transaction_ns = &_financial_transaction_operations;
 
-void _free_financial_transaction(struct financial_transaction * financial_transaction) {
+static void _free_financial_transaction(struct financial_transaction * financial_transaction) {
     if (!financial_transaction) {
         return;
     }
@@ -80,7 +80,7 @@ void _free_financial_transaction(struct financial_transaction * financial_transa
     free(financial_transaction);
 }
 
-struct financial_transaction * _new_financial_transaction() {
+static struct financial_transaction * _new_financial_transaction() {
     struct financial_transaction * financial_transaction = (struct financial_transaction *) calloc(1, sizeof(struct financial_transaction));
     return financial_transaction;
 }
@@ -88,11 +88,11 @@ struct financial_transaction * _new_financial_transaction() {
 void (*free_financial_transaction)(struct financial_transaction * financial_transaction) = &_free_financial_transaction;
 struct financial_transaction * (*new_financial_transaction)(void) = &_new_financial_transaction;
 
-struct financial_transaction* _to_financial_transaction(gpointer const pointer) {
+static struct financial_transaction* _to_financial_transaction(gpointer const pointer) {
     return (struct financial_transaction *) pointer;
 }
 
-gpointer _to_gpointer(struct financial_transaction* const financial_transaction) {
+static gpointer _to_gpointer(struct financial_transaction* const financial_transaction) {
     return (gpointer) financial_transaction;
 }
 
@@ -103,12 +103,12 @@ static struct financial_transaction_convert _financial_transaction_converter = {
 
 const struct financial_transaction_convert * const financial_transaction_converter = &_financial_transaction_converter;
 
-void _free_financial_transaction_item(gpointer data) {
+static void _free_financial_transaction_item(gpointer data) {
     struct financial_transaction* financial_transaction = _to_financial_transaction(data);
     _free_financial_transaction(financial_transaction);
 }
 
-void _free_financial_transaction_list(financial_transaction_list list) {
+static void _free_financial_transaction_list(financial_transaction_list list) {
     g_list_free_full(list, &_free_financial_transaction_item);
 }
 
