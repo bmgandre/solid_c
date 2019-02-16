@@ -14,7 +14,7 @@ source_group("Headers" FILES ${PROJECT_HEADERS})
 
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(GLIB2 REQUIRED IMPORTED_TARGET glib-2.0)
-pkg_check_modules(CURSES REQUIRED IMPORTED_TARGET ncurses)
+pkg_check_modules(CURSES REQUIRED IMPORTED_TARGET ncursesw)
 
 add_library(${PROJECT_NAME} SHARED ${PROJECT_SOURCES})
 
