@@ -1,32 +1,23 @@
-#include <stdio.h>
-#include <gmodule.h>
 #include "../ioc_container/container.h"
-#include "../database/financial_data_mapper.h"
-#include "../interactor/financial_transaction.h"
-
-void print_transaction(gpointer data, gpointer user_data) {
-    (void) user_data;
-
-    struct financial_transaction * transaction = (struct financial_transaction *) data;
-    printf("%s: %f\n", transaction->description, transaction->value);
-}
+#include "../controller/financial_report_controller.h"
+#include "container_register.h"
 
 int main() {
-
-    struct resource database_resource = {
-        .name = TYPE_FINANCIAL_DATA_GATEWAY,
-        .alloc = (alloc_func) new_financial_data_mapper,
-        .free = (free_func) free_financial_data_mapper
+    struct tm start_date = {
+        .tm_year = 119, .tm_mon = 0, .tm_mday = 1,
+        .tm_hour = 0,   .tm_min = 0, .tm_sec = 0
     };
-    get_container()->register_resource(database_resource);
+    struct tm end_date = {
+        .tm_year = 119, .tm_mon = 0, .tm_mday = 31,
+        .tm_hour = 0,   .tm_min = 0, .tm_sec = 0
+    };
 
-    struct financial_data_gateway * data_gateway = get_container()->get_resource(TYPE_FINANCIAL_DATA_GATEWAY);
+    register_resources();
 
-    financial_transaction_list list = data_gateway->list();
-    g_list_foreach(list, print_transaction, NULL);
-    free_financial_transaction_list(list);
+    struct financial_report_controller * controller = new_financial_report_controller();
+    controller->generate_report(&start_date, &end_date);
+    free_financial_report_controller(controller);
 
     free_container();
-
     return 0;
 }

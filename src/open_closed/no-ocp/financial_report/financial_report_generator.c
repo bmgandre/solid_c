@@ -1,5 +1,6 @@
 #include "financial_report_generator.h"
 #include "../repository/financial_transaction_repository.h"
+#include <stdlib.h>
 
 static struct financial_report_result * _new_financial_report_result() {
     struct financial_report_result * result = (struct financial_report_result *) calloc(1, sizeof(financial_report_result));

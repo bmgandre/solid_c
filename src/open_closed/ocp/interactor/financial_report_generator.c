@@ -1,6 +1,7 @@
 #include "financial_report_generator.h"
 #include "financial_data_gateway.h"
 #include "../ioc_container/container.h"
+#include <stdlib.h>
 
 static struct financial_report_response * _get_transactions(struct financial_report_request * request) {
     struct financial_report_response * result = new_financial_report_response();
