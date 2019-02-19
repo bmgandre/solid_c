@@ -1,3 +1,5 @@
+add_subdirectory(ioc_container)
 add_subdirectory(interactor)
 add_subdirectory(database)
 add_subdirectory(controller)
+add_subdirectory(app)
