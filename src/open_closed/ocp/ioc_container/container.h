@@ -7,7 +7,8 @@ typedef void (*free_func)(const void *);
 typedef enum typename {
     TYPE_NONE,
     TYPE_FINANCIAL_DATA_GATEWAY,
-    TYPE_FINANCIAL_REPORT_REQUESTER
+    TYPE_FINANCIAL_REPORT_REQUESTER,
+    TYPE_SCREEN_VIEW
 } typename;
 
 typedef struct resource {
