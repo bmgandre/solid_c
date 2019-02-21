@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-static struct financial_transaction financial_transaction_store[] =  {
+static const struct financial_transaction financial_transaction_store[] =  {
     { .id = 1, .date_time = 1546340400, .value = 10., .description = "Printer card" },
     { .id = 2, .date_time = 1546351200, .value = 120., .description = "Keyboard PC101" },
     { .id = 3, .date_time = 1546423200, .value = 1000., .description = "GPU board" },

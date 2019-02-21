@@ -6,6 +6,13 @@
 
 static void _display(financial_transaction_list data) {
     struct screen_view * viewer = get_container()->get_resource(TYPE_SCREEN_VIEW);
+    struct screen_view_model model = {
+        .title = "Financial Report",
+        .date_time = time(NULL),
+        .data = data
+    };
+
+    viewer->display(&model);
 }
 
 static struct screen_presenter * _new_screen_presenter() {

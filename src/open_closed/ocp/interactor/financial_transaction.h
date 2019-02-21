@@ -24,7 +24,7 @@ typedef struct financial_transaction_operations {
     char* (*get_description)(struct financial_transaction * financial_transaction);
     void (*set_description)(struct financial_transaction * financial_transaction, char* description);
 
-    struct financial_transaction * (*clone)(struct financial_transaction *);
+    struct financial_transaction * (*clone)(struct financial_transaction const * const);
 } financial_transaction_operations;
 
 extern const struct financial_transaction_operations * const  financial_transaction_ns;

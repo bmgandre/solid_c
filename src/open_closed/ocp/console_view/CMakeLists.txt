@@ -1,12 +1,9 @@
-set(PROJECT_NAME ocp-screen-presenter)
+set(PROJECT_NAME ocp-console-view)
 
 set(PROJECT_SOURCES
-    screen_presenter.c
-    screen_view_model.c)
+    console_view.c)
 set(PROJECT_HEADERS
-    screen_presenter.h
-    screen_view_model.h
-    screen_view.h)
+    console_view.h)
 
 source_group("Sources" FILES ${PROJECT_SOURCES})
 source_group("Headers" FILES ${PROJECT_HEADERS})
@@ -19,4 +16,3 @@ add_library(${PROJECT_NAME} SHARED ${PROJECT_SOURCES})
 target_include_directories(${PROJECT_NAME} PRIVATE ${GLIB2_INCLUDE_DIRS})
 target_link_libraries(${PROJECT_NAME} ${GLIB2_LDFLAGS} ocp-interactor)
 link_directories(../interactor)
-

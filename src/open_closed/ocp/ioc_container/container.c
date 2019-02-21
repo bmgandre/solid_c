@@ -38,7 +38,7 @@ static void _free_resource(typename name) {
     }
 }
 
-static struct container _container = {
+static const struct container _container = {
     .register_resource = &_register_resource,
     .get_resource = &_get_resource,
     .free_resource = &_free_resource
@@ -50,12 +50,12 @@ static void _init_container() {
     }
 }
 
-static struct container * _get_container() {
+static struct container const * _get_container() {
     _init_container();
     return &_container;
 }
 
-struct container * (*get_container)(void) = &_get_container;
+struct container const * (*get_container)(void) = &_get_container;
 
 static gboolean _free_container_item(gpointer key, gpointer value, gpointer user_data) {
     (void) key; // unused

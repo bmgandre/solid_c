@@ -15,5 +15,5 @@ pkg_search_module(GLIB REQUIRED glib-2.0)
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCES})
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${GLIB_INCLUDE_DIRS})
-target_link_libraries(${PROJECT_NAME} ${GLIB_LDFLAGS} ocp-ioc-container ocp-database ocp-interactor ocp-controller)
-link_directories(../ioc_container ../database ../interactor ../controller)
+target_link_libraries(${PROJECT_NAME} ${GLIB_LDFLAGS} ocp-ioc-container ocp-database ocp-interactor ocp-controller ocp-screen-presenter ocp-console-view)
+link_directories(../ioc_container ../database ../interactor ../controller ../screen_presenter ../console_view)

@@ -39,7 +39,7 @@ static void _set_description(struct financial_transaction * financial_transactio
     strcpy(financial_transaction->description, description);
 }
 
-static struct financial_transaction * _clone(struct financial_transaction * other) {
+static struct financial_transaction * _clone(struct financial_transaction const * const other) {
     struct financial_transaction * financial_transaction = new_financial_transaction();
     _set_id(financial_transaction, other->id);
     _set_date_time(financial_transaction, other->date_time);
@@ -48,7 +48,7 @@ static struct financial_transaction * _clone(struct financial_transaction * othe
     return financial_transaction;
 }
 
-static struct financial_transaction_operations _financial_transaction_operations = {
+static const struct financial_transaction_operations _financial_transaction_operations = {
     .get_id = &_get_id,
     .set_id = &_set_id,
 
@@ -96,7 +96,7 @@ static gpointer _to_gpointer(struct financial_transaction* const financial_trans
     return (gpointer) financial_transaction;
 }
 
-static struct financial_transaction_convert _financial_transaction_converter = {
+static const struct financial_transaction_convert _financial_transaction_converter = {
     .to_financial_transaction = &_to_financial_transaction,
     .to_gpointer = &_to_gpointer
 };
