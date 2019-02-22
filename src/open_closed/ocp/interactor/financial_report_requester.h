@@ -5,7 +5,7 @@
 #include "financial_report_response.h"
 
 typedef struct financial_report_requester {
-    struct financial_report_response const * (*get_transactions)(struct financial_report_request const * const request);
+    struct financial_report_response * (*get_transactions)(struct financial_report_request const * const request);
 } financial_report_requester;
 
 #endif // FINANCIAL_REPORT_REQUESTER_H

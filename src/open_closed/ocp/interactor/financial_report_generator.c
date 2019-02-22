@@ -3,7 +3,7 @@
 #include "../ioc_container/container.h"
 #include <stdlib.h>
 
-static struct financial_report_response const * _get_transactions(struct financial_report_request const * const request) {
+static struct financial_report_response * _get_transactions(struct financial_report_request const * const request) {
     struct financial_report_response * result = new_financial_report_response();
 
     time_t begin_date = mktime(request->begin_date_time);

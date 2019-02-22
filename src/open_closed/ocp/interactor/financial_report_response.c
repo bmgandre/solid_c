@@ -1,4 +1,5 @@
 #include "financial_report_response.h"
+#include <stdlib.h>
 
 static struct financial_report_response * _new_financial_report_response() {
     financial_report_response * response = (financial_report_response *) calloc(1, sizeof(financial_report_response));
