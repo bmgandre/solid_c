@@ -4,7 +4,7 @@
 #include "screen_view.h"
 #include <stdlib.h>
 
-static void _display(financial_transaction_list data) {
+static void _display(financial_transaction_list const data) {
     struct screen_view * viewer = get_container()->get_resource(TYPE_SCREEN_VIEW);
     struct screen_view_model model = {
         .title = "Financial Report",

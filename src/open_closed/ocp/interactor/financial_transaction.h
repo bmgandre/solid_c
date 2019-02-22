@@ -12,17 +12,17 @@ typedef struct financial_transaction {
 } financial_transaction;
 
 typedef struct financial_transaction_operations {
-    long (*get_id)(struct financial_transaction * financial_transaction);
-    void (*set_id)(struct financial_transaction * financial_transaction, long id);
+    long (*get_id)(struct financial_transaction * const financial_transaction);
+    void (*set_id)(struct financial_transaction * const financial_transaction, long id);
 
-    void (*set_date_time)(struct financial_transaction * financial_transaction, time_t date_time);
-    time_t (*get_date_time)(struct financial_transaction * financial_transaction);
+    void (*set_date_time)(struct financial_transaction * const financial_transaction, time_t date_time);
+    time_t (*get_date_time)(struct financial_transaction * const financial_transaction);
 
-    double (*get_value)(struct financial_transaction * financial_transaction);
-    void (*set_value)(struct financial_transaction * financial_transaction, double value);
+    double (*get_value)(struct financial_transaction * const financial_transaction);
+    void (*set_value)(struct financial_transaction * const financial_transaction, double value);
 
-    char* (*get_description)(struct financial_transaction * financial_transaction);
-    void (*set_description)(struct financial_transaction * financial_transaction, char* description);
+    char const * (*get_description)(struct financial_transaction * const financial_transaction);
+    void (*set_description)(struct financial_transaction * const financial_transaction, char * const description);
 
     struct financial_transaction * (*clone)(struct financial_transaction const * const);
 } financial_transaction_operations;
@@ -39,7 +39,7 @@ typedef struct financial_transaction_convert {
 
 extern const struct financial_transaction_convert * const financial_transaction_converter;
 
-typedef GList* financial_transaction_list;
+typedef GList * financial_transaction_list;
 
 extern void (*free_financial_transaction_list)(financial_transaction_list);
 

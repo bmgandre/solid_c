@@ -2,35 +2,35 @@
 #include <stdlib.h>
 #include <string.h>
 
-static long _get_id(struct financial_transaction * financial_transaction) {
+static long _get_id(struct financial_transaction * const financial_transaction) {
     return financial_transaction->id;
 }
 
-static void _set_id(struct financial_transaction * financial_transaction, long id) {
+static void _set_id(struct financial_transaction * const financial_transaction, long id) {
     financial_transaction->id = id;
 }
 
-static void _set_date_time(struct financial_transaction * financial_transaction, time_t date_time) {
+static void _set_date_time(struct financial_transaction * const financial_transaction, time_t date_time) {
     financial_transaction->date_time = date_time;
 }
 
-static time_t _get_date_time(struct financial_transaction * financial_transaction) {
+static time_t _get_date_time(struct financial_transaction * const financial_transaction) {
     return financial_transaction->date_time;
 }
 
-static double _get_value(struct financial_transaction * financial_transaction) {
+static double _get_value(struct financial_transaction * const financial_transaction) {
     return financial_transaction->value;
 }
 
-static void _set_value(struct financial_transaction * financial_transaction, double value) {
+static void _set_value(struct financial_transaction * const financial_transaction, double value) {
     financial_transaction->value = value;
 }
 
-static char* _get_description(struct financial_transaction * financial_transaction) {
+static char const * _get_description(struct financial_transaction * const financial_transaction) {
     return financial_transaction->description;
 }
 
-static void _set_description(struct financial_transaction * financial_transaction, char* description) {
+static void _set_description(struct financial_transaction * const financial_transaction, char * const description) {
     if (financial_transaction->description) {
         free(financial_transaction->description);
     }

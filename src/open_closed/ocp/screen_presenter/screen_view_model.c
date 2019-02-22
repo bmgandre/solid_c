@@ -3,7 +3,7 @@
 #include <string.h>
 #include <time.h>
 
-static char* _get_title(struct screen_view_model * screen_view_model) {
+static char const * _get_title(struct screen_view_model * const screen_view_model) {
     return screen_view_model->title;
 }
 

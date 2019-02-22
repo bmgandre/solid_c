@@ -4,9 +4,9 @@
 #include "financial_transaction.h"
 
 typedef struct financial_report_response {
-    int error_code;
-    char* error_message;
-    financial_transaction_list result;
+    int const error_code;
+    char const * const error_message;
+    financial_transaction_list const result;
 } financial_report_response;
 
 extern struct financial_report_response * (*new_financial_report_response)(void);

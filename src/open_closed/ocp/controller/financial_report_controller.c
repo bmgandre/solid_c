@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <time.h>
 
-static void _generate_report(struct tm * begin, struct tm * end) {
+static void _generate_report(struct tm * const begin, struct tm * const end) {
     struct financial_report_requester * report_requester = (struct financial_report_requester *) get_container()->get_resource(TYPE_FINANCIAL_REPORT_REQUESTER);
     struct financial_report_request request = {
         .begin_date_time = begin,

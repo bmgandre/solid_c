@@ -6,11 +6,11 @@
 #define VALUE_WIDTH 13
 #define DESCRIPTION_WIDTH 30
 
-static void _print_header(struct screen_view_model * model) {
+static void _print_header(struct screen_view_model const * const model) {
     (void) model;
 }
 
-static void _print_body_item(gpointer data_item, gpointer result) {
+static void _print_body_item(gpointer const data_item, gpointer const result) {
     (void) result; // unused
 
     struct financial_transaction * financial_transaction = financial_transaction_converter->to_financial_transaction(data_item);
@@ -31,15 +31,15 @@ static void _print_body_item(gpointer data_item, gpointer result) {
     }
 }
 
-static void _print_body(financial_transaction_list data) {
+static void _print_body(financial_transaction_list const data) {
     g_list_foreach(data, &_print_body_item, NULL);
 }
 
-static void _print_footer(struct screen_view_model * model) {
+static void _print_footer(struct screen_view_model const * const model) {
     (void) model;
 }
 
-static void _print(struct screen_view_model * model) {
+static void _print(struct screen_view_model const * const model) {
     _print_header(model);
     _print_body(model->data);
     _print_footer(model);

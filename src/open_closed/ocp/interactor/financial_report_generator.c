@@ -3,25 +3,27 @@
 #include "../ioc_container/container.h"
 #include <stdlib.h>
 
-static struct financial_report_response * _get_transactions(struct financial_report_request * request) {
+static struct financial_report_response const * _get_transactions(struct financial_report_request const * const request) {
     struct financial_report_response * result = new_financial_report_response();
 
     time_t begin_date = mktime(request->begin_date_time);
     if (begin_date == -1) {
-        (*result) = (struct financial_report_response) {
+        struct financial_report_response response = {
             .error_code = -1,
             .error_message = "Invalid begin date time parameter"
         };
+        memcpy(result, &response, sizeof(struct financial_report_response));
 
         return result;
     }
 
     time_t end_date = mktime(request->end_date_time);
     if (end_date == -1) {
-        (*result) = (struct financial_report_response) {
+        struct financial_report_response response = {
             .error_code = -2,
             .error_message = "Invalid end date time parameter"
         };
+        memcpy(result, &response, sizeof(struct financial_report_response));
 
         return result;
     }
@@ -38,16 +40,23 @@ static struct financial_report_response * _get_transactions(struct financial_rep
     }
 
     g_list_free(all_transaction_list);
-    result->result = transaction_list;
+
+    struct financial_report_response response = {
+        .error_code = 0,
+        .result = transaction_list
+    };
+    memcpy(result, &response, sizeof(struct financial_report_response));
 
     return result;
 }
 
 static struct financial_report_generator * _new_financial_report_generator() {
     struct financial_report_generator * report = (struct financial_report_generator *) calloc(1, sizeof(financial_report_generator));
-    (*report) = (struct financial_report_generator) {
+
+    struct financial_report_generator generator = {
         .base = { .get_transactions = &_get_transactions }
     };
+    memcpy(report, &generator, sizeof(struct financial_report_generator));
 
     return report;
 }
