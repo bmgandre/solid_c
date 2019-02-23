@@ -14,5 +14,5 @@ pkg_check_modules(GLIB2 REQUIRED IMPORTED_TARGET glib-2.0)
 add_library(${PROJECT_NAME} SHARED ${PROJECT_SOURCES})
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${GLIB2_INCLUDE_DIRS})
-target_link_libraries(${PROJECT_NAME} ${GLIB2_LDFLAGS} ocp-interactor)
+target_link_libraries(${PROJECT_NAME} ${GLIB2_LDFLAGS} m ocp-interactor)
 link_directories(../interactor)
