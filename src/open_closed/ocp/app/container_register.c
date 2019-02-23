@@ -4,6 +4,7 @@
 #include "../interactor/financial_report_generator.h"
 #include "../screen_presenter/screen_presenter.h"
 #include "../console_view/console_view.h"
+#include "../colored_console_view/colored_console_view.h"
 
 static void _register_interactor_resource() {
     struct resource interactor_resource = {
@@ -41,11 +42,21 @@ static void _register_console_view() {
     get_container()->register_resource(console_resource);
 }
 
+static void _register_colored_console_view() {
+    struct resource console_resource = {
+        .name = TYPE_SCREEN_VIEW,
+        .alloc = (alloc_func) new_colored_console_view,
+        .free = (free_func) free_colored_console_view
+    };
+    get_container()->register_resource(console_resource);
+}
+
 static void _register_resources() {
     _register_database_resource();
     _register_interactor_resource();
     _register_screen_presenter();
-    _register_console_view();
+    // _register_console_view();
+    _register_colored_console_view();
 }
 
 void (*register_resources)(void) = &_register_resources;
