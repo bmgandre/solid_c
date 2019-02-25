@@ -1,0 +1,8 @@
+add_subdirectory(ioc_container)
+add_subdirectory(interactor)
+add_subdirectory(database)
+add_subdirectory(controller)
+add_subdirectory(screen_presenter)
+add_subdirectory(console_view)
+add_subdirectory(colored_console_view)
+add_subdirectory(app)

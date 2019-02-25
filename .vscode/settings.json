@@ -20,8 +20,5 @@
         "CHERE_INVOKING": "1",
         "MSYSTEM": "MINGW64",
     },
-    "files.associations": {
-        "employee_repository.h": "c",
-        "employee.h": "c"
-    }
+    "C_Cpp.configurationWarnings": "Disabled"
 }
