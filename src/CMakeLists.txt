@@ -1,2 +1,3 @@
 add_subdirectory(single_resposability)
 add_subdirectory(open_closed)
+add_subdirectory(liskov_substitution)
