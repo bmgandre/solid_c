@@ -1,6 +1,9 @@
 # Build folder
 build
 
+# Project file
+CMakeLists.txt.user
+
 # Prerequisites
 *.d
 
