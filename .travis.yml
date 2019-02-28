@@ -2,6 +2,33 @@ language: c
 sudo: true
 matrix:
   include:
+    - os: osx
+      osx_image: xcode10.1
+      compiler: gcc
+      addons:
+        homebrew:
+          packages:
+            - gcc
+            - glib
+            - ncurses
+            - cmocka
+          update: true
+      env:
+        - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
+
+    - os: osx
+      osx_image: xcode10.1
+      compiler: clang
+      addons:
+        homebrew:
+          packages:
+            - glib
+            - ncurses
+            - cmocka
+          update: true
+      env:
+        - MATRIX_EVAL="CC=clang && CXX=clang++"
+
     - os: linux
       compiler: gcc
       addons:
@@ -10,6 +37,7 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - g++-4.9
+            - libcmocka-dev
       env:
          - MATRIX_EVAL="CC=gcc-4.9 && CXX=g++-4.9"
 
@@ -21,6 +49,7 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - g++-5
+            - libcmocka-dev
       env:
          - MATRIX_EVAL="CC=gcc-5 && CXX=g++-5"
 
@@ -32,6 +61,7 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - g++-6
+            - libcmocka-dev
       env:
         - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"
 
@@ -43,9 +73,10 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - g++-7
+            - libcmocka-dev
       env:
         - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
-        
+
     - os: linux
       compiler: gcc
       addons:
@@ -54,6 +85,7 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - g++-8
+            - libcmocka-dev
       env:
         - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
 
@@ -66,6 +98,7 @@ matrix:
             - llvm-toolchain-precise-3.6
           packages:
             - clang-3.6
+            - libcmocka-dev
       env:
         - MATRIX_EVAL="CC=clang-3.6 && CXX=clang++-3.6"
 
@@ -78,6 +111,7 @@ matrix:
             - llvm-toolchain-precise-3.7
           packages:
             - clang-3.7
+            - libcmocka-dev
       env:
         - MATRIX_EVAL="CC=clang-3.7 && CXX=clang++-3.7"
 
@@ -90,6 +124,7 @@ matrix:
             - llvm-toolchain-precise-3.8
           packages:
             - clang-3.8
+            - libcmocka-dev
       env:
         - MATRIX_EVAL="CC=clang-3.8 && CXX=clang++-3.8"
 
@@ -101,6 +136,7 @@ matrix:
             - llvm-toolchain-trusty-3.9
           packages:
             - clang-3.9
+            - libcmocka-dev
       env:
         - MATRIX_EVAL="CC=clang-3.9 && CXX=clang++-3.9"
 
@@ -112,6 +148,7 @@ matrix:
             - llvm-toolchain-trusty-4.0
           packages:
             - clang-4.0
+            - libcmocka-dev
       env:
         - MATRIX_EVAL="CC=clang-4.0 && CXX=clang++-4.0"
 
@@ -123,9 +160,10 @@ matrix:
             - llvm-toolchain-trusty-5.0
           packages:
             - clang-5.0
+            - libcmocka-dev
       env:
         - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0"
-        
+
     - os: linux
       dist: xenial
       compiler: clang
@@ -135,9 +173,10 @@ matrix:
             - llvm-toolchain-xenial-6.0
           packages:
             - clang-6.0
+            - libcmocka-dev
       env:
         - MATRIX_EVAL="CC=clang-6.0 && CXX=clang++-6.0"
-        
+
     - os: linux
       dist: xenial
       compiler: clang
@@ -147,33 +186,9 @@ matrix:
             - llvm-toolchain-xenial-7
           packages:
             - clang-7
+            - libcmocka-dev
       env:
         - MATRIX_EVAL="CC=clang-7 && CXX=clang++-7"
-  
-    - os: osx
-      osx_image: xcode10.1
-      compiler: gcc
-      addons:
-        homebrew:
-          packages:
-            - gcc
-            - glib
-            - ncurses
-          update: true
-      env:
-        - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
-        
-    - os: osx
-      osx_image: xcode10.1
-      compiler: clang
-      addons:
-        homebrew:
-          packages:
-            - glib
-            - ncurses
-          update: true
-      env:
-        - MATRIX_EVAL="CC=clang && CXX=clang++"
 
 before_install:
   - eval "${MATRIX_EVAL}"
