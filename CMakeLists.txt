@@ -4,4 +4,6 @@ cmake_policy(SET CMP0048 NEW)
 
 project(solid VERSION 0.2)
 
+enable_testing()
+
 add_subdirectory(src)
