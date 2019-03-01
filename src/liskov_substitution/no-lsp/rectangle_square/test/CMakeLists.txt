@@ -1,6 +1,6 @@
-set(PROJECT_NAME no-lsp)
+set(PROJECT_NAME no-lsp-rs)
 
-set(PROJECT_SOURCES no_lsp.c)
+set(PROJECT_SOURCES rectangle_test.c)
 
 source_group("Sources" FILES ${PROJECT_SOURCES})
 

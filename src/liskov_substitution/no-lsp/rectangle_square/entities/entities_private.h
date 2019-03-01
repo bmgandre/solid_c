@@ -10,5 +10,4 @@ struct square {
     struct rectangle base;
 };
 
-
 #endif // ENTITIES_PRIVATE_H

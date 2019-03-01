@@ -1,2 +1,1 @@
-add_subdirectory(entities)
-add_subdirectory(app)
+add_subdirectory(rectangle_square)
