@@ -1,24 +1,20 @@
 #include "rectangle.h"
 #include <stdlib.h>
+#include "entities_private.h"
 
-struct rectangle {
-    int height;
-    int width;
-};
-
-int _get_height(struct rectangle * const rectangle) {
+static int _get_height(struct rectangle * const rectangle) {
     return rectangle->height;
 }
 
-void _set_height(struct rectangle * const rectangle, int height) {
+static void _set_height(struct rectangle * const rectangle, int height) {
     rectangle->height = height;
 }
 
-int _get_width(struct rectangle * const rectangle) {
+static int _get_width(struct rectangle * const rectangle) {
     return rectangle->width;
 }
 
-void _set_width(struct rectangle * const rectangle, int width) {
+static void _set_width(struct rectangle * const rectangle, int width) {
     rectangle->width = width;
 }
 

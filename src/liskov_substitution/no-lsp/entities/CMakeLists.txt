@@ -1,9 +1,12 @@
 set(PROJECT_NAME no-lsp-entities)
 
 set(PROJECT_SOURCES
-    rectangle.c)
+    rectangle.c
+    square.c)
 set(PROJECT_HEADERS
-    rectangle.h)
+    entities_private.h
+    rectangle.h
+    square.h)
 
 source_group("Sources" FILES ${PROJECT_SOURCES})
 source_group("Headers" FILES ${PROJECT_HEADERS})
