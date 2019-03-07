@@ -12,6 +12,7 @@ matrix:
             - glib
             - ncurses
             - cmocka
+            - bdw-gc
           update: true
       env:
         - CC=gcc-8
@@ -26,6 +27,7 @@ matrix:
             - glib
             - ncurses
             - cmocka
+            - bdw-gc
           update: true
       env:
         - CC=clang
@@ -41,6 +43,7 @@ matrix:
           packages:
             - g++-4.9
             - libcmocka-dev
+            - libgc-dev
       env:
          - CC=gcc-4.9
          - CXX=g++-4.9
@@ -55,6 +58,7 @@ matrix:
           packages:
             - g++-5
             - libcmocka-dev
+            - libgc-dev
       env:
          - CC=gcc-5
          - CXX=g++-5
@@ -69,6 +73,7 @@ matrix:
           packages:
             - g++-6
             - libcmocka-dev
+            - libgc-dev
       env:
         - CC=gcc-6
         - CXX=g++-6
@@ -83,6 +88,7 @@ matrix:
           packages:
             - g++-7
             - libcmocka-dev
+            - libgc-dev
       env:
         - CC=gcc-7
         - CXX=g++-7
@@ -97,6 +103,7 @@ matrix:
           packages:
             - g++-8
             - libcmocka-dev
+            - libgc-dev
       env:
         - CC=gcc-8
         - CXX=g++-8
@@ -112,6 +119,7 @@ matrix:
           packages:
             - clang-3.6
             - libcmocka-dev
+            - libgc-dev
       env:
         - CC=clang-3.6
         - CXX=clang++-3.6
@@ -127,6 +135,7 @@ matrix:
           packages:
             - clang-3.7
             - libcmocka-dev
+            - libgc-dev
       env:
         - CC=clang-3.7
         - CXX=clang++-3.7
@@ -142,6 +151,7 @@ matrix:
           packages:
             - clang-3.8
             - libcmocka-dev
+            - libgc-dev
       env:
         - CC=clang-3.8
         - CXX=clang++-3.8
@@ -156,6 +166,7 @@ matrix:
           packages:
             - clang-3.9
             - libcmocka-dev
+            - libgc-dev
       env:
         - CC=clang-3.9
         - CXX=clang++-3.9
@@ -170,6 +181,7 @@ matrix:
           packages:
             - clang-4.0
             - libcmocka-dev
+            - libgc-dev
       env:
         - CC=clang-4.0
         - CXX=clang++-4.0
@@ -184,6 +196,7 @@ matrix:
           packages:
             - clang-5.0
             - libcmocka-dev
+            - libgc-dev
       env:
         - CC=clang-5.0
         - CXX=clang++-5.0
@@ -198,6 +211,7 @@ matrix:
           packages:
             - clang-6.0
             - libcmocka-dev
+            - libgc-dev
       env:
         - CC=clang-6.0
         - CXX=clang++-6.0
@@ -212,6 +226,7 @@ matrix:
           packages:
             - clang-7
             - libcmocka-dev
+            - libgc-dev
       env:
         - CC=clang-7
         - CXX=clang++-7
