@@ -25,7 +25,8 @@ void buffer_underflow() {
 }
 
 int main(void) {
-    GC_set_find_leak(1);
+    //GC_set_find_leak(1);
+
     set_allocator_strategy(LIBGC_STRATEGY);
 
     const struct CMUnitTest tests[] = {
@@ -35,7 +36,7 @@ int main(void) {
     };
     int result = cmocka_run_group_tests(tests, NULL, NULL);
 
-    GC_gcollect();
+    //GC_gcollect();
 
     return result;
 }

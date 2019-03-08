@@ -8,6 +8,7 @@ find_package(PkgConfig REQUIRED)
 #pkg_search_module(GLIB REQUIRED glib-2.0)
 pkg_search_module(CMOCKA REQUIRED cmocka)
 
+add_link_options(-Wl,--wrap=malloc,--wrap=free,--wrap=calloc)
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCES})
 add_test(${PROJECT_NAME} ${PROJECT_NAME})
 
