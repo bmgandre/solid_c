@@ -12,11 +12,11 @@ find_package(PkgConfig REQUIRED)
 pkg_search_module(CMOCKA REQUIRED cmocka)
 pkg_search_module(LIBGC REQUIRED bdw-gc)
 
-add_link_options(-Wl,--wrap=malloc,--wrap=free,--wrap=calloc)
 add_library(${PROJECT_NAME} STATIC ${PROJECT_SOURCES})
 
 set_property(TARGET ${PROJECT_NAME} PROPERTY C_STANDARD 11)
 set_property(TARGET ${PROJECT_NAME} PROPERTY C_STANDARD_REQUIRED ON)
+set_property(TARGET ${PROJECT_NAME} APPEND_STRING PROPERTY LINK_FLAGS " -Wl,--wrap=malloc,--wrap=free,--wrap=calloc")
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMOCKA_INCLUDE_DIRS} ${LIBGC_INCLUDE_DIRS})
 target_link_libraries(${PROJECT_NAME} ${CMOCKA_LDFLAGS} ${LIBGC_LDFLAGS})
