@@ -12,7 +12,8 @@ find_package(PkgConfig REQUIRED)
 pkg_search_module(CMOCKA REQUIRED cmocka)
 pkg_search_module(LIBGC REQUIRED bdw-gc)
 
-add_library(${PROJECT_NAME} SHARED ${PROJECT_SOURCES})
+add_link_options(-Wl,--wrap=malloc,--wrap=free,--wrap=calloc)
+add_library(${PROJECT_NAME} STATIC ${PROJECT_SOURCES})
 
 set_property(TARGET ${PROJECT_NAME} PROPERTY C_STANDARD 11)
 set_property(TARGET ${PROJECT_NAME} PROPERTY C_STANDARD_REQUIRED ON)
