@@ -5,7 +5,7 @@
 #include <cmocka.h>
 #include <gc.h>
 #include <stdio.h>
-#include <glib.h>
+#include <string.h>
 
 void leak_memory() {
     int * const temporary = (int*) new(1, sizeof(int));
@@ -13,21 +13,21 @@ void leak_memory() {
 }
 
 void buffer_overflow() {
-    char * const memory = (char*) new(1, sizeof(int));
+    char * memory = (char*) new(1, sizeof(int));
     memory[sizeof(int)] = '!';
-    destroy(memory);
+    delete(&memory);
 }
 
 void buffer_underflow() {
-    char * const memory = (char*) new(1, sizeof(int));
+    char * memory = (char*) new(1, sizeof(int));
     memory[-1] = '!';
-    destroy(memory);
+    delete(&memory);
 }
 
 int main(void) {
-    //GC_set_find_leak(1);
+    GC_set_find_leak(1);
 
-    set_allocator_strategy(LIBGC_STRATEGY);
+    set_allocator_strategy(ALLOCATE_STRATEGY_LIBC);
 
     const struct CMUnitTest tests[] = {
         cmocka_unit_test(leak_memory),
@@ -36,7 +36,7 @@ int main(void) {
     };
     int result = cmocka_run_group_tests(tests, NULL, NULL);
 
-    //GC_gcollect();
+    GC_gcollect();
 
     return result;
 }

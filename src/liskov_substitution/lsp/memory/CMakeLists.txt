@@ -1,9 +1,15 @@
 set(PROJECT_NAME lsp-memory)
 
 set(PROJECT_SOURCES
-    allocator.c)
+    allocator.c
+    libc_allocator.c
+    cmocka_allocator.c
+    gc_allocator.c)
 set(PROJECT_HEADERS
-    allocator.h)
+    allocator.h
+    libc_allocator.h
+    cmocka_allocator.h
+    gc_allocator.h)
 
 source_group("Sources" FILES ${PROJECT_SOURCES})
 source_group("Headers" FILES ${PROJECT_HEADERS})
@@ -16,7 +22,6 @@ add_library(${PROJECT_NAME} STATIC ${PROJECT_SOURCES})
 
 set_property(TARGET ${PROJECT_NAME} PROPERTY C_STANDARD 11)
 set_property(TARGET ${PROJECT_NAME} PROPERTY C_STANDARD_REQUIRED ON)
-set_property(TARGET ${PROJECT_NAME} APPEND_STRING PROPERTY LINK_FLAGS " -Wl,--wrap=malloc,--wrap=free,--wrap=calloc")
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMOCKA_INCLUDE_DIRS} ${LIBGC_INCLUDE_DIRS})
 target_link_libraries(${PROJECT_NAME} ${CMOCKA_LDFLAGS} ${LIBGC_LDFLAGS})
