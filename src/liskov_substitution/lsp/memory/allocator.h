@@ -4,19 +4,19 @@
 #include <stddef.h>
 
 #define new(num, size) get_allocator()->allocate((num), (size), (__FILE__), (__LINE__))
-#define delete(ptr) get_allocator()->free(((void**)(ptr)), (__FILE__), (__LINE__))
-#define delete_safe(ptr, size) get_allocator()->free_safe(((void**)(ptr)), (size), (__FILE__), (__LINE__))
-#define delete_immediate(ptr) get_allocator()->free_immediate(((void**)(ptr)), (__FILE__), (__LINE__))
-#define delete_immediate_safe(ptr, size) get_allocator()->free_immediate_safe(((void**)(ptr)), (size), (__FILE__), (__LINE__))
+#define delete(ptr) get_allocator()->release(((void**)(ptr)), (__FILE__), (__LINE__))
+#define delete_safe(ptr, size) get_allocator()->release_safe(((void**)(ptr)), (size), (__FILE__), (__LINE__))
+#define delete_immediate(ptr) get_allocator()->release_immediate(((void**)(ptr)), (__FILE__), (__LINE__))
+#define delete_immediate_safe(ptr, size) get_allocator()->release_immediate_safe(((void**)(ptr)), (size), (__FILE__), (__LINE__))
 
 typedef struct memory_operations {
     void* (*allocate)(const size_t num, const size_t size, const char * file, const int line);
 
-    void (*free)(void ** pointer, const char * file, const int line);
-    void (*free_safe)(void ** pointer, const size_t size, const char * file, const int line);
+    void (*release)(void ** pointer, const char * file, const int line);
+    void (*release_safe)(void ** pointer, const size_t size, const char * file, const int line);
 
-    void (*free_immediate)(void ** pointer, const char * file, const int line);
-    void (*free_immediate_safe)(void ** pointer, const size_t size, const char * file, const int line);
+    void (*release_immediate)(void ** pointer, const char * file, const int line);
+    void (*release_immediate_safe)(void ** pointer, const size_t size, const char * file, const int line);
 } memory_operations;
 
 extern struct memory_operations const * (*get_allocator)(void);
@@ -36,5 +36,15 @@ typedef enum memory_strategy {
 } memory_strategy;
 
 extern void (*set_allocator_strategy)(memory_strategy strategy);
+
+void * wrap_malloc(const size_t size);
+void * wrap_calloc(const size_t num, const size_t size);
+void wrap_free(void * pointer);
+
+#ifdef WRAP_ALLOC
+#define malloc wrap_malloc
+#define calloc wrap_calloc
+#define free wrap_free
+#endif
 
 #endif // ALLOCATOR_H

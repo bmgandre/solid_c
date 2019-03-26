@@ -64,10 +64,10 @@ static void _gc_free_immediate_safe(void ** pointer, size_t size, const char * f
 
 static const struct memory_operations _gc_operations = {
     .allocate = &_gc_allocate,
-    .free = &_gc_free,
-    .free_safe = &_gc_free_safe,
-    .free_immediate = &_gc_free_immediate,
-    .free_immediate_safe = &_gc_free_immediate_safe
+    .release = &_gc_free,
+    .release_safe = &_gc_free_safe,
+    .release_immediate = &_gc_free_immediate,
+    .release_immediate_safe = &_gc_free_immediate_safe
 };
 
 static const struct allocator_operations _gc_allocator = {

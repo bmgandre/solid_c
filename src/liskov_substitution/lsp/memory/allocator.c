@@ -58,19 +58,19 @@ static struct memory_operations const * _get_allocator() {
 
 struct memory_operations const * (*get_allocator)(void) = &_get_allocator;
 
-void * __wrap_malloc(const size_t size) {
+void * wrap_malloc(const size_t size) {
     return current_malloc_func == NULL
             ? libc_allocator_operations->wrap_malloc(size)
             : current_malloc_func(size);
 }
 
-void * __wrap_calloc(const size_t num, const size_t size) {
+void * wrap_calloc(const size_t num, const size_t size) {
     return current_calloc_func == NULL
             ? libc_allocator_operations->wrap_calloc(num, size)
             : current_calloc_func(num, size);
 }
 
-void __wrap_free(void * pointer) {
+void wrap_free(void * pointer) {
     if (current_free_func == NULL) {
         libc_allocator_operations->wrap_free(pointer);
     } else {

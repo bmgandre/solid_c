@@ -6,6 +6,7 @@
 #include <gc.h>
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 void leak_memory() {
     int * const temporary = (int*) new(1, sizeof(int));
@@ -27,7 +28,7 @@ void buffer_underflow() {
 int main(void) {
     GC_set_find_leak(1);
 
-    set_allocator_strategy(ALLOCATE_STRATEGY_LIBC);
+    set_allocator_strategy(ALLOCATE_STRATEGY_GC);
 
     const struct CMUnitTest tests[] = {
         cmocka_unit_test(leak_memory),

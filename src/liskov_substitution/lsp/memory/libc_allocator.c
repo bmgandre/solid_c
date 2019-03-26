@@ -1,24 +1,26 @@
 #include "libc_allocator.h"
 #include <string.h>
+#include <stdio.h>
 
-extern void * __real_malloc(const size_t size);
-extern void * __real_calloc(const size_t num, const size_t size);
-extern void __real_free(void * pointer);
+#undef calloc
+#undef malloc
+#undef free
+
+#include <stdlib.h>
 
 static void * _libc_wrapper_calloc(size_t num, size_t size) {
-    void * result = __real_calloc(num, size);
+    void * result = calloc(num, size);
     return result;
 }
 
 static void * _libc_wrapper_malloc(size_t size) {
-    void * result = __real_malloc(size);
+    void * result = malloc(size);
     return result;
 }
 
 static void _libc_wrapper_free(void *ptr) {
-    __real_free(ptr);
+    free(ptr);
 }
-
 
 static void * _libc_allocate(size_t num, size_t size, const char * file, const int line) {
     (void) file;
@@ -54,10 +56,10 @@ static void _libc_free_immediate_safe(void ** pointer, size_t size, const char *
 
 static const struct memory_operations _libc_operations = {
     .allocate = &_libc_allocate,
-    .free = &_libc_free,
-    .free_safe = &_libc_free_safe,
-    .free_immediate = &_libc_free_immediate,
-    .free_immediate_safe = &_libc_free_immediate_safe
+    .release = &_libc_free,
+    .release_safe = &_libc_free_safe,
+    .release_immediate = &_libc_free_immediate,
+    .release_immediate_safe = &_libc_free_immediate_safe
 };
 
 static const struct allocator_operations _libc_allocator = {

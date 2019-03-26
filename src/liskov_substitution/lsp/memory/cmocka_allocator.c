@@ -28,10 +28,10 @@ static void _cmocka_free_immediate_safe(void ** pointer, size_t size, const char
 
 static const struct memory_operations _cmocka_operations = {
     .allocate = &_cmocka_allocate,
-    .free = &_cmocka_free,
-    .free_safe = &_cmocka_free_safe,
-    .free_immediate = &_cmocka_free_immediate,
-    .free_immediate_safe = &_cmocka_free_immediate_safe
+    .release = &_cmocka_free,
+    .release_safe = &_cmocka_free_safe,
+    .release_immediate = &_cmocka_free_immediate,
+    .release_immediate_safe = &_cmocka_free_immediate_safe
 };
 
 static const struct allocator_operations _cmocka_allocator = {
